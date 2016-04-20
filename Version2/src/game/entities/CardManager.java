@@ -2,6 +2,7 @@ package game.entities;
 
 import game.boundaries.Outputable;
 import game.entities.cards.AbstractCard;
+import game.entities.cards.ChanceCard;
 import game.entities.fields.AbstractField;
 import game.entities.fields.Fleet;
 import game.entities.fields.LaborCamp;
@@ -29,10 +30,10 @@ public class CardManager {
 	/************************************************************
 	 * Creates the array of fields use from the FieldData class *
 	 ************************************************************/
-	private void initializeCards(Outputable gui){
+	private AbstractCard[] initializeCards(Outputable gui){
 		cards = new AbstractCard[NUMBER_OF_Cards];
 
-		for (int i = 0; i < fields.length; i++) {
+		for (int i = 0; i < NUMBER_OF_Cards; i++) {
 			switch(FieldData.FIELDTYPE_DATA[i]){
 			case TERRITORY: 
 				fields[i] = new Territory(this, FieldData.FIELDBUYPRICE_DATA[i],FieldData.FIELDRENT1_DATA[i], FieldData.FIELDNUMBER[i], gui);
@@ -61,5 +62,23 @@ public class CardManager {
 			
 			}	
 		}	
+		for(int i = 0; i < cards.length; i++) {
+			int j = (int) (Math.random()*cards.length);
+			AbstractCard tmpCard = cards[i];
+			cards[i] = cards[j];
+			cards[j] = tmpCard;
+		}
+		return cards;
 	}
+	
+	//Draw a card like in a queue
+			public AbstractCard drawCard(){
+				AbstractCard drawnCard;
+				drawnCard=cards[0];
+				for(int i = 0; i < (cards.length-1); i++){
+					cards[i]=cards[i+1];
+				}
+				cards[cards.length-1]=drawnCard;	
+				return drawnCard;
+			}
 }
