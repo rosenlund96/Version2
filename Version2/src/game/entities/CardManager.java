@@ -59,7 +59,6 @@ public class CardManager {
 				fields[i] = new Start(this, 4000,FieldData.FIELDNUMBER[i], gui);
 				break;
 			
-				
 			}	
 		}	
 	}
