@@ -12,10 +12,13 @@ public class Tax extends AbstractCard {
 		this.taxAmount = taxAmount;
 		
 	}
+	
+	public int getCardNo(){
+		return cardNo;
+	}
 
 	@Override
 	public void drawCard(Player player) {
-		output.showCardMessage(player, cardNo);
 		switch (taxAmount) {
 		case 200:
 			collectTax(200, player);

@@ -9,7 +9,7 @@ public abstract class AbstractOwnable extends AbstractCard{
 	protected int cardNo;
 	
 	
-	public AbstractOwnable(Outputable output, CardType cardType, int cardNo) {
+	public AbstractOwnable(Outputable output, CardType cardType) {
 		super(output, cardType);
 		owner = null;
 		

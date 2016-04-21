@@ -2,21 +2,13 @@ package game.entities;
 
 import game.boundaries.Outputable;
 import game.entities.cards.AbstractCard;
-import game.entities.cards.ChanceCard;
-import game.entities.fields.AbstractField;
-import game.entities.fields.Fleet;
-import game.entities.fields.LaborCamp;
-import game.entities.fields.LuckyCard;
-import game.entities.fields.Prison;
-import game.entities.fields.Refuge;
-import game.entities.fields.Start;
-import game.entities.fields.Tax;
-import game.entities.fields.Territory;
-import game.resources.FieldData;
+import game.entities.cards.MovaActivePlayer;
+import game.resources.CardEffect;
+
 
 public class CardManager {
 	public final int NUMBER_OF_Cards = 33;
-	private AbstractCard[] cards;
+	public AbstractCard[] cards;
 
 	
 	/**************************************************
@@ -30,36 +22,23 @@ public class CardManager {
 	/************************************************************
 	 * Creates the array of fields use from the FieldData class *
 	 ************************************************************/
-	private AbstractCard[] initializeCards(Outputable gui){
+	public AbstractCard[] initializeCards(Outputable gui){
 		cards = new AbstractCard[NUMBER_OF_Cards];
 
 		for (int i = 0; i < NUMBER_OF_Cards; i++) {
-			switch(FieldData.FIELDTYPE_DATA[i]){
-			case TERRITORY: 
-				fields[i] = new Territory(this, FieldData.FIELDBUYPRICE_DATA[i],FieldData.FIELDRENT1_DATA[i], FieldData.FIELDNUMBER[i], gui);
-				break;
-			case LABOR_CAMP: 
-				fields[i] = new LaborCamp(this, FieldData.FIELDBUYPRICE_DATA[i], FieldData.FIELDRENT1_DATA[i], gui);
-				break;
-			case FLEET: 
-				fields[i] = new Fleet(this, FieldData.FIELDBUYPRICE_DATA[i], gui);
-				break;
-			case TAX: 
-				fields[i] = new Tax(this, FieldData.FIELDRENT1_DATA[i], gui);
-				break;
-			case REFUGE: 
-				fields[i] = new Refuge(this, FieldData.FIELDRENT1_DATA[i], gui);
+			switch(CardEffect.CardType_DATA[i]){
+			case MOVE:
+				cards[i] = new MovaActivePlayer(gui, CardEffect.CardNo_DATA[i]);
 				break;
 			case PRISON:
-				fields[i] = new Prison(this,gui,FieldData.FIELDNUMBER[i]);
+				cards[i] = new game.entities.cards.Prison(gui, CardEffect.CardNo_DATA[i]);
 				break;
-			case LUCKYCARD:
-				fields[i] = new LuckyCard(this, gui);
+			case REFUGE:
+				cards[i] = new game.entities.cards.Refuge(gui, CardEffect.CardEffect_DATA[i], CardEffect.CardNo_DATA[i]);
 				break;
-			case START:
-				fields[i] = new Start(this, 4000,FieldData.FIELDNUMBER[i], gui);
+			case TAX:
+				cards[i] = new game.entities.cards.Tax(gui, CardEffect.CardEffect_DATA[i], CardEffect.CardNo_DATA[i]);
 				break;
-			
 			}	
 		}	
 		for(int i = 0; i < cards.length; i++) {
@@ -72,9 +51,10 @@ public class CardManager {
 	}
 	
 	//Draw a card like in a queue
-			public AbstractCard drawCard(){
+			public AbstractCard drawCard(Player player){
 				AbstractCard drawnCard;
 				drawnCard=cards[0];
+				drawnCard.drawCard(player);
 				for(int i = 0; i < (cards.length-1); i++){
 					cards[i]=cards[i+1];
 				}

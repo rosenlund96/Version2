@@ -13,10 +13,13 @@ public class MovaActivePlayer extends AbstractCard {
 		this.cardNo = cardNo;
 		
 	}
+	
+	public int getCardNo(){
+		return cardNo;
+	}
 
 	@Override
 	public void drawCard(Player player) {
-		output.showCardMessage(player, cardNo);
 		int currentPosition = player.getPosition();
 		int difference;
 		switch (cardNo) {

@@ -18,7 +18,11 @@ public abstract class AbstractCard {
 		
 	}
 	
-	public CardType getFieldType(){
+	public int getCardNo(){
+		return cardNo;
+	}
+	
+	public CardType getCardType(){
 		return cardType;
 	}
 	

@@ -8,6 +8,7 @@ public class GameBoard {
 
 	private ArrayList<Player> players;
 	public FieldManager fieldManager;
+	public CardManager cardManager;
 	private int playerTurn;
 	private final int STARTING_POSITION = 0;
 
@@ -22,6 +23,7 @@ public class GameBoard {
 		for (int i = 0; i < names.size(); i++) {
 			players.add(new Player(names.get(i), startingBalance, STARTING_POSITION,false, false,0,0));
 		}
+		cardManager = new CardManager(gui);
 		fieldManager = new FieldManager(gui);
 	}
 	

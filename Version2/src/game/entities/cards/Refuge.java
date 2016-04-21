@@ -19,30 +19,28 @@ public class Refuge extends AbstractCard {
 	
 	}
 	
+	public int getCardNo(){
+		return cardNo;
+	}
+	
 	@Override
 	public void drawCard(Player player) {
-		output.showCardMessage(player, cardNo);
 		switch (bonus) {
 		case 1000:
 			player.deposit(1000);
-			output.showDepositMessage(player.getName(), bonus);
+			output.showCard("De modtager deres aktieudbytte. Modtag kr. 1000 af banken");
 			break;
 		case 200:
 			player.deposit(200);
-			output.showDepositMessage(player.getName(), bonus);
+			output.showCard("Værdien af egen avl fra nyttehaven udgør 200kr. Modtag kr. 200 af banken.");
 			break;
 		case 500:
 			player.deposit(500);
-			output.showDepositMessage(player.getName(), bonus);
+			output.showCard("De har vundet i klasselotteriet, modtag kr. 500.");
 			break;
 		case 3000:
 			player.deposit(3000);
-			output.showDepositMessage(player.getName(), bonus);
-			break;
-		case 40000:
-			if (fieldManager.getFieldsValue(player)<= 15000) {
-				player.deposit(bonus);
-			}
+			output.showCard("Kommunen har eftergivet en kvartalsskat, hæv i banken kr. 3000.");
 			break;
 		default:
 			bonus = 200;

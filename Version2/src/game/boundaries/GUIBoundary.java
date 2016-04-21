@@ -220,7 +220,7 @@ public class GUIBoundary implements Outputable{
 
 	@Override
 	public void showCardMessage(Player playerName, int cardNo) {
-		String s1 = reader.getElement("cards", cardNo);
+		String s1 = reader.getElement("cards", cardNo-1);
 		String msg = playerName + ": " + s1;
 		GUI.displayChanceCard(msg);
 	}
@@ -246,7 +246,7 @@ public class GUIBoundary implements Outputable{
 
 	@Override
 	public void showCard(String text) {
-		GUI.displayChanceCard(text);
+		GUI.displayChanceCard("Du har trukket et kort");
 		GUI.getUserButtonPressed("", "OK");
 	}
 	
