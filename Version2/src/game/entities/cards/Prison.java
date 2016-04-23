@@ -1,11 +1,12 @@
 package game.entities.cards;
 
+import desktop_resources.GUI;
 import game.boundaries.Outputable;
 import game.entities.Player;
+import game.util.XMLReader;
 
 public class Prison extends AbstractOwnable {
 
-	
 	
 	public Prison(Outputable output, int cardNo) {
 		super(output, CardType.PRISON);

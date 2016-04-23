@@ -4,11 +4,14 @@ import game.boundaries.Outputable;
 import game.entities.cards.AbstractCard;
 import game.entities.cards.MovaActivePlayer;
 import game.resources.CardEffect;
+import game.util.XMLReader;
 
 
 public class CardManager {
 	public final int NUMBER_OF_Cards = 33;
 	public AbstractCard[] cards;
+	String userHome = System.getProperty("user.home");
+	XMLReader reader = new XMLReader(userHome+"/git/IT--2semester/Projekt-Software/resources/language2.xml");
 
 	
 	/**************************************************
@@ -29,15 +32,19 @@ public class CardManager {
 			switch(CardEffect.CardType_DATA[i]){
 			case MOVE:
 				cards[i] = new MovaActivePlayer(gui, CardEffect.CardNo_DATA[i]);
+				cards[i].setText(reader.getElement("cards", CardEffect.CardNo_DATA[i]-1));
 				break;
 			case PRISON:
 				cards[i] = new game.entities.cards.Prison(gui, CardEffect.CardNo_DATA[i]);
+				cards[i].setText(reader.getElement("cards", CardEffect.CardNo_DATA[i]-1));
 				break;
 			case REFUGE:
 				cards[i] = new game.entities.cards.Refuge(gui, CardEffect.CardEffect_DATA[i], CardEffect.CardNo_DATA[i]);
+				cards[i].setText(reader.getElement("cards", CardEffect.CardNo_DATA[i]-1));
 				break;
 			case TAX:
 				cards[i] = new game.entities.cards.Tax(gui, CardEffect.CardEffect_DATA[i], CardEffect.CardNo_DATA[i]);
+				cards[i].setText(reader.getElement("cards", CardEffect.CardNo_DATA[i]-1));
 				break;
 			}	
 		}	

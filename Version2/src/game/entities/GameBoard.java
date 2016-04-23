@@ -23,7 +23,6 @@ public class GameBoard {
 		for (int i = 0; i < names.size(); i++) {
 			players.add(new Player(names.get(i), startingBalance, STARTING_POSITION,false, false,0,0));
 		}
-		cardManager = new CardManager(gui);
 		fieldManager = new FieldManager(gui);
 	}
 	

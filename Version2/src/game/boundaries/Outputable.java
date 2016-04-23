@@ -66,7 +66,7 @@ public interface Outputable {
 
 	public void showDoTimeMessage(Player player);
     
-	void showCardMessage(Player player, int cardNo);//AbstractCard
+	void showCardMessage(int cardNo);//AbstractCard
 
 	public boolean promptBuyProperty(String name, int i);
 
